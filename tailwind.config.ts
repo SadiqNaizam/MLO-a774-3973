@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import defaultTheme from 'tailwindcss/defaultTheme';
 
 export default {
 	darkMode: ["class"],
@@ -52,21 +53,24 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				sidebar: {
-					DEFAULT: 'hsl(var(--sidebar-background))',
-					foreground: 'hsl(var(--sidebar-foreground))',
-					primary: 'hsl(var(--sidebar-primary))',
-					'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-					accent: 'hsl(var(--sidebar-accent))',
-					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-					border: 'hsl(var(--sidebar-border))',
-					ring: 'hsl(var(--sidebar-ring))'
-				}
+        // PRD specific colors, available as utilities e.g. text-prdAccentSecondary
+        prdBackground: '#F4F6F9',
+        prdSurface: '#FFFFFF',
+        prdPrimaryText: '#0A2540', // Mapped to foreground
+        prdSecondaryText: '#475569', // Mapped to muted-foreground
+        prdAccent: '#1876D1', // Mapped to primary and accent
+        prdAccentSecondary: '#111827',
+        prdBorder: '#E5E7EB' // Mapped to border
 			},
+			fontFamily: {
+        sans: ['var(--font-sans)', ...defaultTheme.fontFamily.sans],
+      },
 			borderRadius: {
-				lg: 'var(--radius)',
-				md: 'calc(var(--radius) - 2px)',
-				sm: 'calc(var(--radius) - 4px)'
+        DEFAULT: 'calc(var(--radius) - 4px)', // PRD default: "rounded" (0.25rem if --radius is 0.5rem)
+				lg: 'var(--radius)', // PRD buttons: "rounded-lg" (0.5rem)
+				md: 'calc(var(--radius) - 2px)', // (0.375rem if --radius is 0.5rem)
+				sm: 'calc(var(--radius) - 4px)', // (0.25rem if --radius is 0.5rem)
+        full: '9999px' // PRD full: "rounded-full"
 			},
 			keyframes: {
 				'accordion-down': {
